@@ -13,6 +13,10 @@
             --falcon-gray: #F2F2F2;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Roboto', 'Arial', sans-serif;
             margin: 0;
@@ -46,6 +50,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            text-decoration: none;
         }
 
         .logo-image {
@@ -74,6 +79,7 @@
         .nav-links {
             display: flex;
             gap: 30px;
+            align-items: center;
         }
 
         .nav-link {
@@ -86,6 +92,21 @@
 
         .nav-link:hover {
             color: var(--falcon-red);
+        }
+
+        .active {
+            color: var(--falcon-red);
+            position: relative;
+        }
+
+        .active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--falcon-red);
         }
 
         .cart-icon {
@@ -137,6 +158,8 @@
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-button:hover {
@@ -220,6 +243,8 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .shop-now-btn:hover {
@@ -234,7 +259,7 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 25px;
         }
 
@@ -243,10 +268,15 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
         }
 
         .product-image {
-            height: 140px;
+            height: 180px;
             background-color: #f5f5f5;
             display: flex;
             align-items: center;
@@ -269,6 +299,7 @@
             font-weight: bold;
             color: var(--falcon-red);
             margin: 5px 0;
+            font-size: 18px;
         }
 
         .add-to-cart {
@@ -352,6 +383,7 @@
             justify-content: center;
             gap: 30px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
 
         .payment-option {
@@ -458,6 +490,383 @@
             color: #999;
         }
 
+        /* Cart Page Styles */
+        .cart-page {
+            padding: 60px 0;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .cart-table th {
+            background-color: var(--falcon-black);
+            color: var(--falcon-white);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .cart-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-table img {
+            max-width: 80px;
+            border-radius: 4px;
+        }
+
+        .cart-product {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cart-product-info h4 {
+            margin: 0 0 5px;
+        }
+
+        .cart-product-info p {
+            color: #666;
+            margin: 0;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: var(--falcon-gray);
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .remove-btn {
+            background-color: transparent;
+            color: var(--falcon-red);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+
+        .cart-summary {
+            background-color: var(--falcon-white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-summary h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .summary-total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .checkout-btn {
+            background-color: var(--falcon-red);
+            color: var(--falcon-white);
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--falcon-black);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .empty-cart p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Spirit Wear Page */
+        .spirit-wear-page {
+            padding: 60px 0;
+        }
+
+        .product-details {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .product-image-large {
+            flex: 0 0 400px;
+            background-color: var(--falcon-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            height: 400px;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-info h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .product-info .price {
+            font-size: 24px;
+            color: var(--falcon-red);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .size-options {
+            margin: 20px 0;
+        }
+
+        .size-label {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .size-label:hover {
+            border-color: var(--falcon-red);
+        }
+
+        .size-label.selected {
+            background-color: var(--falcon-red);
+            color: var(--falcon-white);
+            border-color: var(--falcon-red);
+        }
+
+        .product-action {
+            margin-top: 30px;
+        }
+
+        .product-action .quantity-control {
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart-large {
+            background-color: var(--falcon-red);
+            color: var(--falcon-white);
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-large:hover {
+            background-color: var(--falcon-black);
+        }
+
+        /* About Page */
+        .about-page {
+            padding: 60px 0;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            background-color: var(--falcon-red);
+            margin: 30px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--falcon-white);
+            font-size: 48px;
+        }
+
+        .team-section {
+            margin-top: 60px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            background-color: var(--falcon-gray);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .team-name {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .team-role {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Payment Page */
+        .payment-page {
+            padding: 60px 0;
+        }
+
+        .payment-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--falcon-white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .payment-methods {
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            margin-bottom: 10px;
+        }
+
+        .payment-method input {
+            margin-right: 10px;
+        }
+
+        .student-id-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .place-order-btn {
+            background-color: var(--falcon-red);
+            color: var(--falcon-white);
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .place-order-btn:hover {
+            background-color: var(--falcon-black);
+        }
+
+        /* Success Message */
+        .success-message {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-container {
@@ -468,6 +877,7 @@
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 15px;
             }
 
             .hero h1 {
@@ -477,6 +887,38 @@
             .footer-content {
                 flex-direction: column;
             }
+
+            .product-image-large {
+                flex: 0 0 100%;
+            }
+        }
+
+        /* Page Transition */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Cart Notification */
+        .cart-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--falcon-black);
+            color: var(--falcon-white);
+            padding: 15px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+        }
+
+        .cart-notification.show {
+            transform: translateX(0);
         }
     </style>
 </head>
@@ -484,184 +926,609 @@
     <!-- Header Section -->
     <header class="header">
         <div class="container nav-container">
-            <div class="logo">
+            <a href="#" class="logo" onclick="showPage('home-page')">
                 <div class="logo-image">FN</div>
                 <div class="logo-text">Falcons <span>Nest</span></div>
-            </div>
+            </a>
             <nav class="nav-links">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">School Supplies</a>
-                <a href="#" class="nav-link">Spirit Wear</a>
-                <a href="#" class="nav-link">Events</a>
-                <a href="#" class="nav-link">About</a>
-                <div class="cart-icon">
+                <a href="#" class="nav-link active" onclick="setActivePage('home-page', this)">Home</a>
+                <a href="#" class="nav-link" onclick="setActivePage('spirit-wear-page', this)">Spirit Wear</a>
+                <a href="#" class="nav-link" onclick="setActivePage('about-page', this)">About</a>
+                <a href="#" class="nav-link" onclick="setActivePage('payment-page', this)">Payment</a>
+                <div class="cart-icon" onclick="setActivePage('cart-page', null)">
                     <span class="nav-link">Cart</span>
-                    <div class="cart-count">0</div>
+                    <div class="cart-count" id="cart-badge">0</div>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Welcome to Falcons Nest</h1>
-            <p>Your one-stop shop for all school essentials and Falcon spirit gear. From pencils to spirit wear, we've got you covered!</p>
-            <button class="cta-button">Shop Now</button>
-        </div>
-    </section>
+    <!-- Cart Notification -->
+    <div class="cart-notification" id="cart-notification">
+        Item added to cart!
+    </div>
 
-    <!-- Categories Section -->
-    <section class="categories">
-        <div class="container">
-            <h2 class="section-title">Shop By Category</h2>
-            <div class="category-grid">
-                <div class="category-card">
-                    <div class="category-image">✏️</div>
-                    <div class="category-content">
-                        <h3>School Supplies</h3>
-                        <p>Pens, pencils, notebooks, and everything you need for class.</p>
-                        <button class="shop-now-btn">Shop Now</button>
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Welcome to Falcons Nest</h1>
+                <p>Your one-stop shop for all school essentials and Falcon spirit gear. From pencils to spirit wear, we've got you covered!</p>
+                <a href="#" class="cta-button" onclick="setActivePage('spirit-wear-page', null)">Shop Now</a>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories">
+            <div class="container">
+                <h2 class="section-title">Shop By Category</h2>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <div class="category-image">✏️</div>
+                        <div class="category-content">
+                            <h3>School Supplies</h3>
+                            <p>Pens, pencils, notebooks, and everything you need for class.</p>
+                            <a href="#" class="shop-now-btn">Shop Now</a>
+                        </div>
                     </div>
-                </div>
-                <div class="category-card">
-                    <div class="category-image">👕</div>
-                    <div class="category-content">
-                        <h3>Spirit Wear</h3>
-                        <p>Show your Falcon pride with our selection of school-themed apparel.</p>
-                        <button class="shop-now-btn">Shop Now</button>
+                    <div class="category-card">
+                        <div class="category-image">👕</div>
+                        <div class="category-content">
+                            <h3>Spirit Wear</h3>
+                            <p>Show your Falcon pride with our selection of school-themed apparel.</p>
+                            <a href="#" class="shop-now-btn" onclick="setActivePage('spirit-wear-page', null); return false;">Shop Now</a>
+                        </div>
                     </div>
-                </div>
-                <div class="category-card">
-                    <div class="category-image">🎧</div>
-                    <div class="category-content">
-                        <h3>Tech Essentials</h3>
-                        <p>Earbuds, chargers, and other tech accessories for students.</p>
-                        <button class="shop-now-btn">Shop Now</button>
+                    <div class="category-card">
+                        <div class="category-image">🎧</div>
+                        <div class="category-content">
+                            <h3>Tech Essentials</h3>
+                            <p>Earbuds, chargers, and other tech accessories for students.</p>
+                            <a href="#" class="shop-now-btn">Shop Now</a>
+                        </div>
                     </div>
-                </div>
-                <div class="category-card">
-                    <div class="category-image">🏀</div>
-                    <div class="category-content">
-                        <h3>Event Merchandise</h3>
-                        <p>Special items for sports games, dances, and school events.</p>
-                        <button class="shop-now-btn">Shop Now</button>
+                    <div class="category-card">
+                        <div class="category-image">🏀</div>
+                        <div class="category-content">
+                            <h3>Event Merchandise</h3>
+                            <p>Special items for sports games, dances, and school events.</p>
+                            <a href="#" class="shop-now-btn">Shop Now</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Featured Products -->
-    <section class="featured">
-        <div class="container">
-            <h2 class="section-title">Featured Products</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">📓</div>
-                    <div class="product-content">
-                        <h3 class="product-title">Falcon Spiral Notebook</h3>
-                        <p class="product-price">$4.99</p>
-                        <button class="add-to-cart">Add to Cart</button>
+        <!-- Featured Products -->
+        <section class="featured">
+            <div class="container">
+                <h2 class="section-title">Featured Products</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">📓</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Falcon Spiral Notebook</h3>
+                            <p class="product-price">$4.99</p>
+                            <button class="add-to-cart" onclick="addToCart('Falcon Spiral Notebook', 4.99, '📓')">Add to Cart</button>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">👕</div>
-                    <div class="product-content">
-                        <h3 class="product-title">Falcons Team T-Shirt</h3>
-                        <p class="product-price">$15.99</p>
-                        <button class="add-to-cart">Add to Cart</button>
+                    <div class="product-card">
+                        <div class="product-image">👕</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Falcons Team T-Shirt</h3>
+                            <p class="product-price">$15.99</p>
+                            <button class="add-to-cart" onclick="addToCart('Falcons Team T-Shirt', 15.99, '👕')">Add to Cart</button>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">🎧</div>
-                    <div class="product-content">
-                        <h3 class="product-title">Wireless Earbuds</h3>
-                        <p class="product-price">$19.99</p>
-                        <button class="add-to-cart">Add to Cart</button>
+                    <div class="product-card">
+                        <div class="product-image">🎧</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Wireless Earbuds</h3>
+                            <p class="product-price">$19.99</p>
+                            <button class="add-to-cart" onclick="addToCart('Wireless Earbuds', 19.99, '🎧')">Add to Cart</button>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">🧴</div>
-                    <div class="product-content">
-                        <h3 class="product-title">Travel Size Deodorant</h3>
-                        <p class="product-price">$3.49</p>
-                        <button class="add-to-cart">Add to Cart</button>
+                    <div class="product-card">
+                        <div class="product-image">🧴</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Travel Size Deodorant</h3>
+                            <p class="product-price">$3.49</p>
+                            <button class="add-to-cart" onclick="addToCart('Travel Size Deodorant', 3.49, '🧴')">Add to Cart</button>
+                        </div>
                     </div>
+                    <div class="product-card">
+                        <div class="product-image">🖊️</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Falcon Gel Pens (5pk)</h3>
+                            <p class="product-price">$6.99</p>
+                            <button class="add-to-cart" onclick="addToCart('Falcon Gel Pens (5pk)', 6.99, '🖊️')">Add to Cart</button>
+</div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">🖊️</div>
-                    <div class="product-content">
-                        <h3 class="product-title">Falcon Gel Pens (5pk)</h3>
-                        <p class="product-price">$6.99</p>
-                        <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </section>
+
+        <!-- School Spirit Section -->
+        <section class="spirit">
+            <div class="container">
+                <h2 class="section-title">School Spirit & Events</h2>
+                <p>Check out our special merchandise for upcoming school events!</p>
+                <div class="event-grid">
+                    <div class="event-card">
+                        <div class="event-image">🏈</div>
+                        <div class="event-content">
+                            <h3 class="event-title">Homecoming Game</h3>
+                            <p class="event-date">October 15, 2025</p>
+                            <p>Get your special edition homecoming gear while supplies last!</p>
+                            <a href="#" class="shop-now-btn">View Collection</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-image">🏀</div>
+                        <div class="event-content">
+                            <h3 class="event-title">Basketball Season</h3>
+                            <p class="event-date">Starting November 2025</p>
+                            <p>Support our Falcons basketball team with official merchandise.</p>
+                            <a href="#" class="shop-now-btn">View Collection</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-image">🎭</div>
+                        <div class="event-content">
+                            <h3 class="event-title">Spring Musical</h3>
+                            <p class="event-date">March 2026</p>
+                            <p>Show your support for our talented performers with themed items.</p>
+                            <a href="#" class="shop-now-btn">Coming Soon</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- School Spirit Section -->
-    <section class="spirit">
-        <div class="container">
-            <h2 class="section-title">School Spirit & Events</h2>
-            <p>Check out our special merchandise for upcoming school events!</p>
-            <div class="event-grid">
-                <div class="event-card">
-                    <div class="event-image">🏈</div>
-                    <div class="event-content">
-                        <h3 class="event-title">Homecoming Game</h3>
-                        <p class="event-date">October 15, 2025</p>
-                        <p>Get your special edition homecoming gear while supplies last!</p>
-                        <button class="shop-now-btn">View Collection</button>
+        <!-- Payment Section -->
+        <section class="payment">
+            <div class="container">
+                <h2 class="section-title">Easy Payment Options</h2>
+                <div class="payment-info">
+                    <p>The Falcons Nest accepts multiple forms of payment for your convenience.</p>
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <div class="payment-icon">ID</div>
+                            <span>Student ID</span>
+                        </div>
+                        <div class="payment-option">
+                            <div class="payment-icon">💳</div>
+                            <span>Credit Card</span>
+                        </div>
+                        <div class="payment-option">
+                            <div class="payment-icon">💵</div>
+                            <span>Cash</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px;">Use your student code for quick and easy purchases!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Spirit Wear Page -->
+    <div id="spirit-wear-page" class="page">
+        <section class="spirit-wear-page">
+            <div class="container">
+                <h1 class="section-title">Falcon Spirit Wear</h1>
+                <p class="text-center">Show your school pride with our collection of high-quality Falcon apparel and accessories.</p>
+               
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">🧥</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Falcons Varsity Jacket</h3>
+                            <p class="product-price">$59.99</p>
+                            <button class="add-to-cart" onclick="viewProduct('jacket')">View Details</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">👕</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Falcons T-Shirt</h3>
+                            <p class="product-price">$19.99</p>
+                            <button class="add-to-cart" onclick="viewProduct('shirt')">View Details</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">🧢</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Falcons Baseball Cap</h3>
+                            <p class="product-price">$16.99</p>
+                            <button class="add-to-cart" onclick="viewProduct('hat')">View Details</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">📌</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Falcons Enamel Pin</h3>
+                            <p class="product-price">$7.99</p>
+                            <button class="add-to-cart" onclick="viewProduct('pin')">View Details</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">👖</div>
+                        <div class="product-content">
+                            <h3 class="product-title">Falcons Sweatpants</h3>
+                            <p class="product-price">$29.99</p>
+                            <button class="add-to-cart" onclick="viewProduct('pants')">View Details</button>
+                        </div>
                     </div>
                 </div>
-                <div class="event-card">
-                    <div class="event-image">🏀</div>
-                    <div class="event-content">
-                        <h3 class="event-title">Basketball Season</h3>
-                        <p class="event-date">Starting November 2025</p>
-                        <p>Support our Falcons basketball team with official merchandise.</p>
-                        <button class="shop-now-btn">View Collection</button>
+               
+                <!-- Product Detail Views (Initially Hidden) -->
+                <div id="product-jacket" class="product-details" style="display: none;">
+                    <div class="product-image-large">🧥</div>
+                    <div class="product-info">
+                        <h2>Falcons Varsity Jacket</h2>
+                        <p class="price">$59.99</p>
+                        <div class="product-description">
+                            <p>Show your school spirit with our premium varsity jacket featuring the Falcons logo embroidered on the front and back. Made from high-quality materials with red, black, and white school colors.</p>
+                            <ul>
+                                <li>Premium polyester shell with satin lining</li>
+                                <li>Ribbed collar, cuffs, and waistband</li>
+                                <li>Snap-button front closure</li>
+                                <li>Embroidered Falcons logo on front and back</li>
+                                <li>Two front pockets</li>
+                            </ul>
+                        </div>
+                        <div class="size-options">
+                            <p><strong>Size:</strong></p>
+                            <div class="size-selector">
+                                <span class="size-label" onclick="selectSize(this)">S</span>
+                                <span class="size-label" onclick="selectSize(this)">M</span>
+                                <span class="size-label selected" onclick="selectSize(this)">L</span>
+                                <span class="size-label" onclick="selectSize(this)">XL</span>
+                                <span class="size-label" onclick="selectSize(this)">XXL</span>
+                            </div>
+                        </div>
+                        <div class="product-action">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="decreaseQuantity('jacket-quantity')">-</button>
+                                <input type="number" id="jacket-quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn" onclick="increaseQuantity('jacket-quantity')">+</button>
+                            </div>
+                            <button class="add-to-cart-large" onclick="addToCartWithQuantity('Falcons Varsity Jacket', 59.99, '🧥', 'jacket-quantity')">Add to Cart</button>
+                        </div>
+                        <button class="shop-now-btn" style="margin-top: 20px;" onclick="backToSpiritWear()">Back to Spirit Wear</button>
                     </div>
                 </div>
-                <div class="event-card">
-                    <div class="event-image">🎭</div>
-                    <div class="event-content">
-                        <h3 class="event-title">Spring Musical</h3>
-                        <p class="event-date">March 2026</p>
-                        <p>Show your support for our talented performers with themed items.</p>
-                        <button class="shop-now-btn">Coming Soon</button>
+               
+                <div id="product-shirt" class="product-details" style="display: none;">
+                    <div class="product-image-large">👕</div>
+                    <div class="product-info">
+                        <h2>Falcons T-Shirt</h2>
+                        <p class="price">$19.99</p>
+                        <div class="product-description">
+                            <p>Comfortable cotton t-shirt with the Falcons logo printed on the front. Perfect for school days, game days, or just showing your school pride!</p>
+                            <ul>
+                                <li>100% pre-shrunk cotton</li>
+                                <li>Screen-printed falcon emblem</li>
+                                <li>School colors: red, black, and white</li>
+                                <li>Machine washable</li>
+                                <li>Unisex fit</li>
+                            </ul>
+                        </div>
+                        <div class="size-options">
+                            <p><strong>Size:</strong></p>
+                            <div class="size-selector">
+                                <span class="size-label" onclick="selectSize(this)">S</span>
+                                <span class="size-label selected" onclick="selectSize(this)">M</span>
+                                <span class="size-label" onclick="selectSize(this)">L</span>
+                                <span class="size-label" onclick="selectSize(this)">XL</span>
+                                <span class="size-label" onclick="selectSize(this)">XXL</span>
+                            </div>
+                        </div>
+                        <div class="product-action">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="decreaseQuantity('shirt-quantity')">-</button>
+                                <input type="number" id="shirt-quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn" onclick="increaseQuantity('shirt-quantity')">+</button>
+                            </div>
+                            <button class="add-to-cart-large" onclick="addToCartWithQuantity('Falcons T-Shirt', 19.99, '👕', 'shirt-quantity')">Add to Cart</button>
+                        </div>
+                        <button class="shop-now-btn" style="margin-top: 20px;" onclick="backToSpiritWear()">Back to Spirit Wear</button>
+                    </div>
+                </div>
+               
+                <div id="product-hat" class="product-details" style="display: none;">
+                    <div class="product-image-large">🧢</div>
+                    <div class="product-info">
+                        <h2>Falcons Baseball Cap</h2>
+                        <p class="price">$16.99</p>
+                        <div class="product-description">
+                            <p>Classic baseball cap featuring the embroidered Falcons logo. Adjustable size with a comfortable fit for any head size.</p>
+                            <ul>
+                                <li>Structured, low-profile fit</li>
+                                <li>Embroidered falcon emblem</li>
+                                <li>Red cap with black and white embroidery</li>
+                                <li>Adjustable back closure</li>
+                                <li>One size fits most</li>
+                            </ul>
+                        </div>
+                        <div class="product-action">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="decreaseQuantity('hat-quantity')">-</button>
+                                <input type="number" id="hat-quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn" onclick="increaseQuantity('hat-quantity')">+</button>
+                            </div>
+                            <button class="add-to-cart-large" onclick="addToCartWithQuantity('Falcons Baseball Cap', 16.99, '🧢', 'hat-quantity')">Add to Cart</button>
+                        </div>
+                        <button class="shop-now-btn" style="margin-top: 20px;" onclick="backToSpiritWear()">Back to Spirit Wear</button>
+                    </div>
+                </div>
+               
+                <div id="product-pin" class="product-details" style="display: none;">
+                    <div class="product-image-large">📌</div>
+                    <div class="product-info">
+                        <h2>Falcons Enamel Pin</h2>
+                        <p class="price">$7.99</p>
+                        <div class="product-description">
+                            <p>Show your school pride with this high-quality enamel pin featuring our Falcons logo. Great for decorating backpacks, jackets, or collecting!</p>
+                            <ul>
+                                <li>Hard enamel with metal backing</li>
+                                <li>Falcon design in school colors</li>
+                                <li>Size: 1.25 inches</li>
+                                <li>Butterfly clasp backing</li>
+                                <li>Durable and long-lasting</li>
+                            </ul>
+                        </div>
+                        <div class="product-action">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="decreaseQuantity('pin-quantity')">-</button>
+                                <input type="number" id="pin-quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn" onclick="increaseQuantity('pin-quantity')">+</button>
+                            </div>
+                            <button class="add-to-cart-large" onclick="addToCartWithQuantity('Falcons Enamel Pin', 7.99, '📌', 'pin-quantity')">Add to Cart</button>
+                        </div>
+                        <button class="shop-now-btn" style="margin-top: 20px;" onclick="backToSpiritWear()">Back to Spirit Wear</button>
+                    </div>
+                </div>
+               
+                <div id="product-pants" class="product-details" style="display: none;">
+                    <div class="product-image-large">👖</div>
+                    <div class="product-info">
+                        <h2>Falcons Sweatpants</h2>
+                        <p class="price">$29.99</p>
+                        <div class="product-description">
+                            <p>Comfortable sweatpants with the Falcons logo embroidered on the left leg. Perfect for gym class, after-school activities, or lounging at home.</p>
+                            <ul>
+                                <li>50% cotton, 50% polyester blend</li>
+                                <li>Elastic waistband with drawstring</li>
+                                <li>Two side pockets</li>
+                                <li>Embroidered falcon logo</li>
+                                <li>Available in black with red accent stitching</li>
+                            </ul>
+                        </div>
+                        <div class="size-options">
+                            <p><strong>Size:</strong></p>
+                            <div class="size-selector">
+                                <span class="size-label" onclick="selectSize(this)">S</span>
+                                <span class="size-label" onclick="selectSize(this)">M</span>
+                                <span class="size-label selected" onclick="selectSize(this)">L</span>
+                                <span class="size-label" onclick="selectSize(this)">XL</span>
+                                <span class="size-label" onclick="selectSize(this)">XXL</span>
+                            </div>
+                        </div>
+                        <div class="product-action">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" onclick="decreaseQuantity('pants-quantity')">-</button>
+                                <input type="number" id="pants-quantity" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn" onclick="increaseQuantity('pants-quantity')">+</button>
+                            </div>
+                            <button class="add-to-cart-large" onclick="addToCartWithQuantity('Falcons Sweatpants', 29.99, '👖', 'pants-quantity')">Add to Cart</button>
+                        </div>
+                        <button class="shop-now-btn" style="margin-top: 20px;" onclick="backToSpiritWear()">Back to Spirit Wear</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Payment Section -->
-    <section class="payment">
-        <div class="container">
-            <h2 class="section-title">Easy Payment Options</h2>
-            <div class="payment-info">
-                <p>The Falcons Nest accepts multiple forms of payment for your convenience.</p>
-                <div class="payment-options">
-                    <div class="payment-option">
-                        <div class="payment-icon">ID</div>
-                        <span>Student ID</span>
+    <!-- About Page -->
+    <div id="about-page" class="page">
+        <section class="about-page">
+            <div class="container">
+                <h1 class="section-title">About Falcons Nest</h1>
+                <div class="about-content">
+                    <p>The Falcons Nest is more than just a school store - it's a hub of school spirit and a resource for all students at our high school. Established in 2010, the Falcons Nest has been providing essential school supplies, spirit wear, and other necessities to our student body.</p>
+                   
+                    <div class="about-image">🏫</div>
+                   
+                    <p>Our mission is to make school life easier by providing convenient access to the supplies students need most, while also promoting school pride through our selection of Falcons merchandise. From pencils to sweatshirts, we've got what you need to succeed and show your school spirit!</p>
+                   
+                    <p>The Falcons Nest is run by a dedicated team of student volunteers and staff advisors. This hands-on experience provides real-world business skills to our student workers, including inventory management, customer service, and financial literacy.</p>
+                   
+                    <p>All proceeds from the Falcons Nest go directly back into student programs, funding activities, clubs, and events that enrich our school community.</p>
+                   
+                    <div class="team-section">
+                        <h2 class="section-title">Meet Our Team</h2>
+                        <div class="team-grid">
+                            <div class="team-member">
+                                <div class="team-photo">👩‍🏫</div>
+                                <h3 class="team-name">Ms. Johnson</h3>
+                                <p class="team-role">Faculty Advisor</p>
+                            </div>
+                            <div class="team-member">
+                                <div class="team-photo">👨‍🏫</div>
+                                <h3 class="team-name">Mr. Rodriguez</h3>
+                                <p class="team-role">Business Manager</p>
+                            </div>
+                            <div class="team-member">
+                                <div class="team-photo">👩‍🎓</div>
+                                <h3 class="team-name">Sarah Chen</h3>
+                                <p class="team-role">Student Manager</p>
+                            </div>
+                            <div class="team-member">
+                                <div class="team-photo">👨‍🎓</div>
+                                <h3 class="team-name">David Kim</h3>
+                                <p class="team-role">Inventory Specialist</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="payment-option">
-                        <div class="payment-icon">💳</div>
-                        <span>Credit Card</span>
-                    </div>
-                    <div class="payment-option">
-                        <div class="payment-icon">💵</div>
-                        <span>Cash</span>
+                   
+                    <h2>Store Hours</h2>
+                    <p>We're open every school day to serve our students:</p>
+                    <ul>
+                        <li>Monday - Friday: 7:30am - 3:30pm</li>
+                        <li>Before School: 7:30am - 8:15am</li>
+                        <li>Lunch Periods: 11:00am - 1:00pm</li>
+                        <li>After School: 2:45pm - 3:30pm</li>
+                        <li>Extended hours during school events and game days</li>
+                    </ul>
+                   
+                    <h2>Location</h2>
+                    <p>Find us in Room 123, Main Building - just off the main cafeteria.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Cart Page -->
+    <div id="cart-page" class="page">
+        <section class="cart-page">
+            <div class="container">
+                <h1 class="section-title">Your Shopping Cart</h1>
+               
+                <!-- Empty Cart Message -->
+                <div id="empty-cart" class="empty-cart">
+                    <p>Your cart is currently empty.</p>
+                    <a href="#" class="cta-button" onclick="setActivePage('home-page', null)">Continue Shopping</a>
+                </div>
+               
+                <!-- Cart Content -->
+                <div id="cart-content" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <table class="cart-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cart-items">
+                                    <!-- Cart items will be dynamically added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="cart-summary">
+                                <h3>Order Summary</h3>
+                                <div class="summary-row">
+                                    <span>Subtotal</span>
+                                    <span id="cart-subtotal">$0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Sales Tax (3%)</span>
+                                    <span id="cart-tax">$0.00</span>
+                                </div>
+                                <div class="summary-row summary-total">
+                                    <span>Total</span>
+                                    <span id="cart-total">$0.00</span>
+                                </div>
+                                <button class="checkout-btn" onclick="setActivePage('payment-page', null)">Proceed to Checkout</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p style="margin-top: 20px;">Use your student code for quick and easy purchases!</p>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
+
+    <!-- Payment Page -->
+    <div id="payment-page" class="page">
+        <section class="payment-page">
+            <div class="container">
+                <h1 class="section-title">Checkout</h1>
+               
+                <div class="success-message" id="order-success">
+                    Your order has been placed successfully! Thank you for shopping at Falcons Nest.
+                </div>
+               
+                <div class="payment-form" id="payment-form">
+                    <h3>Billing Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" class="form-control" required>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                   
+                    <div class="payment-methods">
+                        <h3>Payment Method</h3>
+                        <div class="payment-method">
+                            <input type="radio" id="student-id" name="payment-method" value="student-id" checked>
+                            <label for="student-id">Student ID</label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" id="credit-card" name="payment-method" value="credit-card">
+                            <label for="credit-card">Credit Card</label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" id="cash" name="payment-method" value="cash">
+                            <label for="cash">Cash (Pay at Pickup)</label>
+                        </div>
+                    </div>
+                   
+                    <div class="student-id-section" id="student-id-section">
+                        <h3>Student ID Information</h3>
+                        <div class="form-group">
+                            <label for="student-id-number">Student ID Number</label>
+                            <input type="text" id="student-id-number" class="form-control" required>
+                        </div>
+                    </div>
+                   
+                    <div id="credit-card-section" style="display: none;">
+                        <h3>Credit Card Information</h3>
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" id="expiry-date" class="form-control" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" class="form-control" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="notes">Order Notes (Optional)</label>
+                        <textarea id="notes" class="form-control" rows="3"></textarea>
+                    </div>
+                   
+                    <div class="summary-row">
+                        <span>Total:</span>
+                        <span id="payment-total">$0.00</span>
+                    </div>
+                   
+                    <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -679,11 +1546,10 @@
                 <div class="footer-section">
                     <h3 class="footer-title">Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#" onclick="setActivePage('home-page', null)">Home</a></li>
+                        <li><a href="#" onclick="setActivePage('spirit-wear-page', null)">Spirit Wear</a></li>
+                        <li><a href="#" onclick="setActivePage('about-page', null)">About Us</a></li>
+                        <li><a href="#" onclick="setActivePage('cart-page', null)">Cart</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -710,28 +1576,382 @@
     </footer>
 
     <script>
-        // Simple cart functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const addToCartButtons = document.querySelectorAll('.add-to-cart');
-            const cartCount = document.querySelector('.cart-count');
-            let count = 0;
-           
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    count++;
-                    cartCount.textContent = count;
-                   
-                    // Animation effect
-                    button.textContent = "Added!";
-                    button.style.backgroundColor = "#28a745";
-                   
-                    setTimeout(() => {
-                        button.textContent = "Add to Cart";
-                        button.style.backgroundColor = "";
-                    }, 1000);
-                });
+        // Store cart data in localStorage
+        let cart = JSON.parse(localStorage.getItem('falconsNestCart')) || [];
+       
+        // Show active page and set active nav link
+        function setActivePage(pageId, link) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
             });
+           
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+           
+            // Update active nav link
+            if (link) {
+                document.querySelectorAll('.nav-link').forEach(navLink => {
+                    navLink.classList.remove('active');
+                });
+                link.classList.add('active');
+            }
+           
+            // Scroll to top
+            window.scrollTo(0, 0);
+           
+            // Update cart summary if on cart page
+            if (pageId === 'cart-page') {
+                updateCartPage();
+            }
+           
+            // Update payment total if on payment page
+            if (pageId === 'payment-page') {
+                updatePaymentTotal();
+            }
+        }
+       
+        // Show individual product details
+        function viewProduct(productId) {
+            // Hide all product grids and details
+            document.querySelector('.product-grid').style.display = 'none';
+            document.querySelectorAll('.product-details').forEach(detail => {
+                detail.style.display = 'none';
+            });
+           
+            // Show the selected product details
+            document.getElementById('product-' + productId).style.display = 'flex';
+        }
+       
+        // Go back to spirit wear main page
+        function backToSpiritWear() {
+            document.querySelector('.product-grid').style.display = 'grid';
+            document.querySelectorAll('.product-details').forEach(detail => {
+                detail.style.display = 'none';
+            });
+        }
+       
+        // Select size for products
+        function selectSize(element) {
+            // Remove selected class from all sizes in this group
+            const parent = element.parentElement;
+            parent.querySelectorAll('.size-label').forEach(label => {
+                label.classList.remove('selected');
+            });
+           
+            // Add selected class to clicked size
+            element.classList.add('selected');
+        }
+       
+        // Increase quantity
+        function increaseQuantity(inputId) {
+            const input = document.getElementById(inputId);
+            const currentValue = parseInt(input.value);
+            if (currentValue < 10) {
+                input.value = currentValue + 1;
+            }
+        }
+       
+// Decrease quantity
+function decreaseQuantity(inputId) {
+    const input = document.getElementById(inputId);
+    const currentValue = parseInt(input.value);
+    if (currentValue > 1) {
+        input.value = currentValue - 1;
+    }
+}
+
+// Add item to cart
+function addToCart(name, price, image) {
+    // Check if item already exists in cart
+    const existingItemIndex = cart.findIndex(item => item.name === name);
+   
+    if (existingItemIndex > -1) {
+        // Increase quantity if item exists
+        cart[existingItemIndex].quantity += 1;
+    } else {
+        // Add new item to cart
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            quantity: 1
         });
-    </script>
-</body>
-</html>
+    }
+   
+    // Save cart to localStorage
+    localStorage.setItem('falconsNestCart', JSON.stringify(cart));
+   
+    // Update cart badge
+    updateCartBadge();
+   
+    // Show notification
+    showCartNotification();
+}
+
+// Add item to cart with specified quantity
+function addToCartWithQuantity(name, price, image, quantityInputId) {
+    const quantity = parseInt(document.getElementById(quantityInputId).value);
+   
+    // Check if item already exists in cart
+    const existingItemIndex = cart.findIndex(item => item.name === name);
+   
+    if (existingItemIndex > -1) {
+        // Increase quantity if item exists
+        cart[existingItemIndex].quantity += quantity;
+    } else {
+        // Add new item to cart
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            quantity: quantity
+        });
+    }
+   
+    // Save cart to localStorage
+    localStorage.setItem('falconsNestCart', JSON.stringify(cart));
+   
+    // Update cart badge
+    updateCartBadge();
+   
+    // Show notification
+    showCartNotification();
+   
+    // Return to spirit wear main view
+    backToSpiritWear();
+}
+
+// Update cart badge with total items
+function updateCartBadge() {
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    document.getElementById('cart-badge').textContent = totalItems;
+}
+
+// Show cart notification
+function showCartNotification() {
+    const notification = document.getElementById('cart-notification');
+    notification.classList.add('show');
+   
+    // Hide notification after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
+// Update cart page content
+function updateCartPage() {
+    const emptyCart = document.getElementById('empty-cart');
+    const cartContent = document.getElementById('cart-content');
+    const cartItems = document.getElementById('cart-items');
+   
+    // Clear previous items
+    cartItems.innerHTML = '';
+   
+    if (cart.length === 0) {
+        // Show empty cart message
+        emptyCart.style.display = 'block';
+        cartContent.style.display = 'none';
+        return;
+    }
+   
+    // Show cart content
+    emptyCart.style.display = 'none';
+    cartContent.style.display = 'block';
+   
+    // Add items to cart table
+    let subtotal = 0;
+   
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+       
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <div class="cart-product">
+                    <div class="cart-product-image">${item.image}</div>
+                    <div class="cart-product-info">
+                        <h4>${item.name}</h4>
+                    </div>
+                </div>
+            </td>
+            <td>$${item.price.toFixed(2)}</td>
+            <td>
+                <div class="quantity-control">
+                    <button class="quantity-btn" onclick="updateCartItemQuantity(${index}, -1)">-</button>
+                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" max="10" onchange="updateCartItemQuantityByInput(${index}, this.value)">
+                    <button class="quantity-btn" onclick="updateCartItemQuantity(${index}, 1)">+</button>
+                </div>
+            </td>
+            <td>$${itemTotal.toFixed(2)}</td>
+            <td>
+                <button class="remove-btn" onclick="removeCartItem(${index})">Remove</button>
+            </td>
+        `;
+       
+        cartItems.appendChild(row);
+    });
+   
+    // Calculate and update totals
+    const tax = subtotal * 0.03; // 3% sales tax
+    const total = subtotal + tax;
+   
+    document.getElementById('cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById('cart-tax').textContent = `$${tax.toFixed(2)}`;
+    document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+}
+
+// Update cart item quantity
+function updateCartItemQuantity(index, change) {
+    const newQuantity = cart[index].quantity + change;
+   
+    if (newQuantity < 1) {
+        // Remove item if quantity becomes 0
+        removeCartItem(index);
+    } else if (newQuantity <= 10) {
+        // Update quantity
+        cart[index].quantity = newQuantity;
+       
+        // Save cart to localStorage
+        localStorage.setItem('falconsNestCart', JSON.stringify(cart));
+       
+        // Update cart badge and page
+        updateCartBadge();
+        updateCartPage();
+    }
+}
+
+// Update cart item quantity from input
+function updateCartItemQuantityByInput(index, value) {
+    const quantity = parseInt(value);
+   
+    if (quantity < 1) {
+        // Remove item if quantity becomes 0
+        removeCartItem(index);
+    } else if (quantity <= 10) {
+        // Update quantity
+        cart[index].quantity = quantity;
+       
+        // Save cart to localStorage
+        localStorage.setItem('falconsNestCart', JSON.stringify(cart));
+       
+        // Update cart badge and page
+        updateCartBadge();
+        updateCartPage();
+    }
+}
+
+// Remove cart item
+function removeCartItem(index) {
+    // Remove item from cart
+    cart.splice(index, 1);
+   
+    // Save cart to localStorage
+    localStorage.setItem('falconsNestCart', JSON.stringify(cart));
+   
+    // Update cart badge and page
+    updateCartBadge();
+    updateCartPage();
+}
+
+// Update payment total
+function updatePaymentTotal() {
+    // Calculate total
+    let subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    let tax = subtotal * 0.03; // 3% sales tax
+    let total = subtotal + tax;
+   
+    // Update payment total
+    document.getElementById('payment-total').textContent = `$${total.toFixed(2)}`;
+}
+
+// Toggle payment method sections
+document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        const studentIdSection = document.getElementById('student-id-section');
+        const creditCardSection = document.getElementById('credit-card-section');
+       
+        if (this.value === 'student-id') {
+            studentIdSection.style.display = 'block';
+            creditCardSection.style.display = 'none';
+        } else if (this.value === 'credit-card') {
+            studentIdSection.style.display = 'none';
+            creditCardSection.style.display = 'block';
+        } else {
+            studentIdSection.style.display = 'none';
+            creditCardSection.style.display = 'none';
+        }
+    });
+});
+
+// Place order
+function placeOrder() {
+    // Validate form fields (basic validation)
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const email = document.getElementById('email').value;
+   
+    if (!firstName || !lastName || !email) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+   
+    // Check if cart is empty
+    if (cart.length === 0) {
+        alert('Your cart is empty. Please add items before checkout.');
+        return;
+    }
+   
+    // Show success message
+    document.getElementById('order-success').style.display = 'block';
+    document.getElementById('payment-form').style.display = 'none';
+   
+    // Clear cart
+    cart = [];
+    localStorage.setItem('falconsNestCart', JSON.stringify(cart));
+    updateCartBadge();
+   
+    // Reset form
+    document.getElementById('first-name').value = '';
+    document.getElementById('last-name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('student-id-number').value = '';
+    document.getElementById('notes').value = '';
+   
+    // After 5 seconds, redirect to home page
+    setTimeout(() => {
+        setActivePage('home-page', document.querySelector('.nav-link'));
+        document.getElementById('order-success').style.display = 'none';
+        document.getElementById('payment-form').style.display = 'block';
+    }, 5000);
+}
+
+// Initialize the page
+function initializePage() {
+    // Update cart badge on page load
+    updateCartBadge();
+   
+    // Set up payment method toggle listeners
+    const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
+    paymentMethods.forEach(method => {
+        method.addEventListener('change', function() {
+            const studentIdSection = document.getElementById('student-id-section');
+            const creditCardSection = document.getElementById('credit-card-section');
+           
+            if (this.value === 'student-id') {
+                studentIdSection.style.display = 'block';
+                creditCardSection.style.display = 'none';
+            } else if (this.value === 'credit-card') {
+                studentIdSection.style.display = 'block';
+                creditCardSection.style.display = 'block';
+            } else {
+                studentIdSection.style.display = 'none';
+                creditCardSection.style.display = 'none';
+            }
+        });
+    });
+}
+
+// Run initialization when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializePage);

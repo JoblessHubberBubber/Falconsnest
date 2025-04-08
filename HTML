@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Falcons Nest School Store</title>
+    <style>
+        :root {
+            --falcon-red: #E31B23;
+            --falcon-black: #1A1A1A;
+            --falcon-white: #FFFFFF;
+            --falcon-gray: #F2F2F2;
+        }
+
+        body {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--falcon-black);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--falcon-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            width: 60px;
+            height: 60px;
+            background-color: var(--falcon-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--falcon-white);
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--falcon-black);
+        }
+
+        .logo-text span {
+            color: var(--falcon-red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--falcon-black);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--falcon-red);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--falcon-red);
+            color: var(--falcon-white);
+            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--falcon-red);
+            color: var(--falcon-white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            background-color: var(--falcon-white);
+            color: var(--falcon-red);
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--falcon-black);
+            color: var(--falcon-white);
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--falcon-red);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background-color: var(--falcon-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-image {
+            height: 160px;
+            background-color: var(--falcon-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--falcon-black);
+        }
+
+        .category-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-content h3 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .category-content p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .shop-now-btn {
+            background-color: var(--falcon-red);
+            color: var(--falcon-white);
+            border: none;
+            padding: 8px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .shop-now-btn:hover {
+            background-color: var(--falcon-black);
+        }
+
+        /* Featured Products */
+        .featured {
+            padding: 60px 0;
+            background-color: var(--falcon-gray);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--falcon-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 140px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--falcon-black);
+        }
+
+        .product-content {
+            padding: 15px;
+        }
+
+        .product-title {
+            margin-top: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--falcon-red);
+            margin: 5px 0;
+        }
+
+        .add-to-cart {
+            background-color: var(--falcon-black);
+            color: var(--falcon-white);
+            border: none;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--falcon-red);
+        }
+
+        /* School Spirit Section */
+        .spirit {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background-color: var(--falcon-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-image {
+            height: 180px;
+            background-color: var(--falcon-red);
+            color: var(--falcon-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+        }
+
+        .event-content {
+            padding: 20px;
+        }
+
+        .event-title {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .event-date {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Payment Section */
+        .payment {
+            padding: 60px 0;
+            background-color: var(--falcon-gray);
+            text-align: center;
+        }
+
+        .payment-info {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: var(--falcon-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .payment-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--falcon-black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--falcon-white);
+            font-size: 24px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--falcon-black);
+            color: var(--falcon-white);
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--falcon-red);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--falcon-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--falcon-white);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--falcon-red);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-image">FN</div>
+                <div class="logo-text">Falcons <span>Nest</span></div>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">School Supplies</a>
+                <a href="#" class="nav-link">Spirit Wear</a>
+                <a href="#" class="nav-link">Events</a>
+                <a href="#" class="nav-link">About</a>
+                <div class="cart-icon">
+                    <span class="nav-link">Cart</span>
+                    <div class="cart-count">0</div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to Falcons Nest</h1>
+            <p>Your one-stop shop for all school essentials and Falcon spirit gear. From pencils to spirit wear, we've got you covered!</p>
+            <button class="cta-button">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop By Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-image">✏️</div>
+                    <div class="category-content">
+                        <h3>School Supplies</h3>
+                        <p>Pens, pencils, notebooks, and everything you need for class.</p>
+                        <button class="shop-now-btn">Shop Now</button>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">👕</div>
+                    <div class="category-content">
+                        <h3>Spirit Wear</h3>
+                        <p>Show your Falcon pride with our selection of school-themed apparel.</p>
+                        <button class="shop-now-btn">Shop Now</button>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">🎧</div>
+                    <div class="category-content">
+                        <h3>Tech Essentials</h3>
+                        <p>Earbuds, chargers, and other tech accessories for students.</p>
+                        <button class="shop-now-btn">Shop Now</button>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-image">🏀</div>
+                    <div class="category-content">
+                        <h3>Event Merchandise</h3>
+                        <p>Special items for sports games, dances, and school events.</p>
+                        <button class="shop-now-btn">Shop Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">📓</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Falcon Spiral Notebook</h3>
+                        <p class="product-price">$4.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">👕</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Falcons Team T-Shirt</h3>
+                        <p class="product-price">$15.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🎧</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Wireless Earbuds</h3>
+                        <p class="product-price">$19.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🧴</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Travel Size Deodorant</h3>
+                        <p class="product-price">$3.49</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🖊️</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Falcon Gel Pens (5pk)</h3>
+                        <p class="product-price">$6.99</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- School Spirit Section -->
+    <section class="spirit">
+        <div class="container">
+            <h2 class="section-title">School Spirit & Events</h2>
+            <p>Check out our special merchandise for upcoming school events!</p>
+            <div class="event-grid">
+                <div class="event-card">
+                    <div class="event-image">🏈</div>
+                    <div class="event-content">
+                        <h3 class="event-title">Homecoming Game</h3>
+                        <p class="event-date">October 15, 2025</p>
+                        <p>Get your special edition homecoming gear while supplies last!</p>
+                        <button class="shop-now-btn">View Collection</button>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-image">🏀</div>
+                    <div class="event-content">
+                        <h3 class="event-title">Basketball Season</h3>
+                        <p class="event-date">Starting November 2025</p>
+                        <p>Support our Falcons basketball team with official merchandise.</p>
+                        <button class="shop-now-btn">View Collection</button>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-image">🎭</div>
+                    <div class="event-content">
+                        <h3 class="event-title">Spring Musical</h3>
+                        <p class="event-date">March 2026</p>
+                        <p>Show your support for our talented performers with themed items.</p>
+                        <button class="shop-now-btn">Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment">
+        <div class="container">
+            <h2 class="section-title">Easy Payment Options</h2>
+            <div class="payment-info">
+                <p>The Falcons Nest accepts multiple forms of payment for your convenience.</p>
+                <div class="payment-options">
+                    <div class="payment-option">
+                        <div class="payment-icon">ID</div>
+                        <span>Student ID</span>
+                    </div>
+                    <div class="payment-option">
+                        <div class="payment-icon">💳</div>
+                        <span>Credit Card</span>
+                    </div>
+                    <div class="payment-option">
+                        <div class="payment-icon">💵</div>
+                        <span>Cash</span>
+                    </div>
+                </div>
+                <p style="margin-top: 20px;">Use your student code for quick and easy purchases!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Falcons Nest</h3>
+                    <p>Your school store for all essential needs and Falcon pride merchandise.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Store Hours</h3>
+                    <ul class="footer-links">
+                        <li>Monday - Friday: 7:30am - 3:30pm</li>
+                        <li>Game Days: Extended Hours</li>
+                        <li>Weekends: Closed</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <ul class="footer-links">
+                        <li>Room 123, Main Building</li>
+                        <li>Email: falconsnest@school.edu</li>
+                        <li>Phone: (123) 456-7890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Falcons Nest School Store. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+            let count = 0;
+           
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    count++;
+                    cartCount.textContent = count;
+                   
+                    // Animation effect
+                    button.textContent = "Added!";
+                    button.style.backgroundColor = "#28a745";
+                   
+                    setTimeout(() => {
+                        button.textContent = "Add to Cart";
+                        button.style.backgroundColor = "";
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
